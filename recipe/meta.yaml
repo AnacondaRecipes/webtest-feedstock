@@ -1,32 +1,29 @@
-{% set name = "WebTest" %}
-{% set version = "2.0.33" %}
-{% set file_ext = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "41348efe4323a647a239c31cde84e5e440d726ca4f449859264e538d39037fd0" %}
+{% set name = "webtest" %}
+{% set version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.{{ file_ext }}
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
-  {{ hash_type }}: {{ hash_value }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/WebTest-{{ version }}.tar.gz
+  sha256: 54bd969725838d9861a9fa27f8d971f79d275d94ae255f5c501f53bb6d9929eb
 
 build:
-  number: 1
-  script: pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
     - python
     - setuptools
+    - pip
+    - wheel
   run:
     - python
-    - beautifulsoup4
-    - waitress >=0.8.5
     - webob >=1.2
-    - six
+    - waitress >=0.8.5
+    - beautifulsoup4
 
 test:
   source_files:
@@ -35,13 +32,14 @@ test:
     - webtest
   requires:
     - coverage
-    - mock
-    - nose
     - pastedeploy
     - pyquery
     - wsgiproxy2
+    - pytest
+    - pip
   commands:
-    - nosetests
+    - pip check
+    - pytest tests
 
 about:
   home: http://webtest.pythonpaste.org/

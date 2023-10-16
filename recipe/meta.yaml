@@ -12,6 +12,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  skip: true # [s390x]
 
 requirements:
   host:
@@ -42,12 +43,13 @@ test:
     - pytest tests
 
 about:
-  home: http://webtest.pythonpaste.org/
+  home: https://docs.pylonsproject.org/projects/webtest/
   license: MIT
+  license_file: license.rst
+  license_family: MIT
   summary: helper to test WSGI applications
   description: |
     Webtest tests any application that has a WSGI interface, including an application written
     in a framework that supports WSGI.
-  doc_url: http://webtest.pythonpaste.org/
-  doc_source_url: https://github.com/Pylons/webtest/blob/master/docs/index.rst
+  doc_url: https://docs.pylonsproject.org/projects/webtest/
   dev_url: https://github.com/Pylons/webtest

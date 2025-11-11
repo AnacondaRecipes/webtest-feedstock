@@ -1,18 +1,18 @@
 {% set name = "webtest" %}
-{% set version = "3.0.0" %}
+{% set version = "3.0.7" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/WebTest-{{ version }}.tar.gz
-  sha256: 54bd969725838d9861a9fa27f8d971f79d275d94ae255f5c501f53bb6d9929eb
+  url: https://pypi.org/packages/source/W/WebTest/webtest-3.0.7.tar.gz
+  sha256: 7aeab50f970d46c068e7a36dd162cb242591edf72a1d04efd21374772b931741
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-  skip: true # [s390x]
+  skip: true  # [s390x]
 
 requirements:
   host:
@@ -23,7 +23,7 @@ requirements:
   run:
     - python
     - webob >=1.2
-    - waitress >=0.8.5
+    - waitress >=3.0.2
     - beautifulsoup4
 
 test:
